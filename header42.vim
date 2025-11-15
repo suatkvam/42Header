@@ -20,7 +20,7 @@ let s:types     = {
             \'\.c$\|\.h$\|\.cc$\|\.hh$\|\.cpp$\|\.hpp$\|\.php':
             \['/*', '*/', '*'],
             \'\.htm$\|\.html$\|\.xml$':
-            \['', '*'], " <-- HATA DÜZELTİLDİ
+            \['', '*'],
             \'\.js$':
             \['//', '//', '*'],
             \'\.tex$':
@@ -165,8 +165,8 @@ endfunction
 " --- Command, Shortcut, and Automation ---
 " Bind command and shortcut
 command! Header42 call s:stdheader ()
-command! header42 call s:stdheader () " <-- İSTEDİĞİNİZ KÜÇÜK HARFLİ KOMUT
-map <F1> :Header42<CR> " F1 tuşu büyük harfli olanı tetikler (fark etmez)
+command! header42 call s:stdheader () " Lowercase alias
+map <F1> :Header42<CR>
 
 " --- SAFE AUTOMATION BLOCK ---
 augroup Header42

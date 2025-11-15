@@ -54,8 +54,11 @@ else
     exit 1
 fi
 
-# 6. Apply the changes
-echo "Reloading settings..."
-source "$ZSHRC_FILE"
-
+# 6. Finish
+# We no longer run 'source' as it causes errors when run from bash
 echo "Setup completed successfully!"
+echo ""
+echo "############################################################"
+echo "IMPORTANT: Changes will apply after you restart your terminal"
+echo "or run this command:   source ~/.zshrc"
+echo "############################################################"
