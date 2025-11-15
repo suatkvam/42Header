@@ -1,4 +1,4 @@
-" --- 42 Header Script Start ---
+" --- 42 Header Script Start (Original Cleaned) ---
 
 let s:asciiart = [
             \"        :::      ::::::::",
@@ -97,7 +97,7 @@ function! s:mail()
     endif
     let l:mail = $MAIL
     if strlen(l:mail) == 0
-        let l:mail = "username@student.42istanbul.com.tr"
+        let l:mail = "username@student.istanbul.com.tr"
     endif
     return l:mail
 endfunction
@@ -115,72 +115,43 @@ function! s:date()
 endfunction
 
 function! s:insert()
-    " Prevent adding header if it already exists
-    if getline(1) !~ '/*' " If 1st line doesn't start with '/*'
-        let l:line = 11
+    let l:line = 11
 
-        " empty line after header
-        call append(0, "")
+    " empty line after header
+    call append(0, "")
 
-        " loop over lines
-        while l:line > 0
-            call append(0, s:line(l:line))
-            let l:line = l:line - 1
-        endwhile
-    endif
+    " loop over lines
+    while l:line > 0
+        call append(0, s:line(l:line))
+        let l:line = l:line - 1
+    endwhile
 endfunction
 
 function! s:update()
     call s:filetype()
-    " Check if line 9 exists and check its content (to prevent errors)
+    " GÜVENLİK KONTROLÜ: 9. satır var mı diye bak
     if line('$') >= 9 && getline(9) =~ s:start . repeat(' ', s:margin - strlen(s:start)) . "Updated: "
-        if &mod " If file is modified
+        if &mod
             call setline(9, s:line(9))
         endif
-        " Check if line 4 exists and check its content (to fix wrong filename)
-        if line('$') >= 4 && getline(4) =~ s:start
+        " GÜVENLİK KONTROLÜ: 4. satır var mı diye bak
+        if line('$') >= 4
             call setline(4, s:line(4))
         endif
-        return 0 " Header exists, updated (or not needed)
+        return 0
     endif
-    return 1 " Header not found
+    return 1
 endfunction
 
 function! s:stdheader()
-    " If s:update() returns 1 (no header), s:insert() will run.
     if s:update()
         call s:insert()
     endif
 endfunction
 
-" *** FUNCTION THAT FIXES ALL ERRORS ***
-function! s:RunHeaderOnAllArgs()
-    " Runs :Header42 then :update for each file.
-    silent argdo execute "Header42" | execute "update"
-    
-    " Go back to the first file when done (Correct command: 'first')
-    silent first
-endfunction
-
-" --- Command, Shortcut, and Automation ---
 " Bind command and shortcut
 command! Header42 call s:stdheader ()
-command! header42 call s:stdheader () " Lowercase alias
 map <F1> :Header42<CR>
-
-" --- SAFE AUTOMATION BLOCK ---
-augroup Header42
-    " Clear old commands in this group (prevents stacking)
-    autocmd!
-
-    " 1. SAVING: Update 'Updated:' line on save
-    autocmd BufWritePre *.c,*.h,*.cc,*.hh,*.cpp,*.hpp,*.php call s:update()
-
-    " 2. NEW FILE: Add header when a brand new file is created
-    autocmd BufNewFile *.c,*.h,*.cc,*.hh,*.cpp,*.hpp,*.php call s:stdheader()
-
-    " 3. EXISTING FILES: When opening existing files (e.g., vim *.c)
-    autocmd VimEnter *.c,*.h,*.cc,*.hh,*.cpp,*.hpp,*.php call s:RunHeaderOnAllArgs()
-augroup END
+autocmd BufWritePre * call s:update ()
 
 " --- 42 Header Script End ---
