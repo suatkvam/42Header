@@ -1,6 +1,6 @@
 # 42 Header Vim Plugin (vim-42header)
 
-> **Note:** This is a modified version of the original [vim-42header](https://github.com/kube/vim-42header) by kube, adapted for personal preferences and automated setup.
+> **Note:** This is a modified version of the original [vim-42header](https://github.com/akifdora/42header) by kube, adapted for personal preferences and automated setup.
 
 This plugin allows 42 school students to automatically insert and update the standard 42 header in their files using the Vim editor.
 
