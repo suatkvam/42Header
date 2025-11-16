@@ -1,10 +1,10 @@
 # 42 Header Vim Plugin (vim-42header)
 
-> **Note:** This is a modified version of the original [vim-42header](https://github.com/akifdora/42header) by kube, adapted for personal preferences and automated setup.
+> **Note:** This is a modified version of the original [vim-42header](https://github.com/akifdora/42header) by akifdora, adapted for personal preferences and automated setup.
 
 This plugin allows 42 school students to automatically insert and update the standard 42 header in their files using the Vim editor.
 
-It is designed for C/C++ files like `.c`, `.h`, `.cc`, `.hpp`, and `.php`.
+It is designed for C/C++ files like `.c`, `.h`, `.cc`, and `.hpp`.
 
 ## Features
 
@@ -12,6 +12,7 @@ It is designed for C/C++ files like `.c`, `.h`, `.cc`, `.hpp`, and `.php`.
 * **Auto-Correction:** Automatically fixes incorrect filenames (`Filename: ...`) in files that were copied and pasted.
 * **Auto-Update:** Automatically updates the `Updated: ...` line every time you save (`:w`) or reopen the file.
 * **Batch Processing:** When opening multiple files (e.g., `vim *.c`), it processes, updates, and saves all files in one go.
+  - For manual batch processing, use: `:argdo execute "Header42" | update`
 * **Manual Trigger:** You can manually insert/update the header at any time using the `:Header42` command or the `<F1>` key.
 
 ## Installation
@@ -20,9 +21,7 @@ The easiest way to install this plugin is by using the `setup.sh` script.
 
 ```bash
 # 1. Clone your repo
-git clone [https://github.com/suatkvam/42Header.git](https://github.com/suatkvam/42Header.git) 42header
-# Or if using SSH:
-# git clone git@github.com:suatkvam/42Header.git 42header
+git clone https://github.com/suatkvam/42Header.git 42header
 
 # 2. Navigate to the cloned directory
 cd 42header

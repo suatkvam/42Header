@@ -143,14 +143,14 @@ function! s:update()
     return 1
 endfunction
 
-function! s:stdheader()
+function! s:std42Header()
     if s:update()
         call s:insert()
     endif
 endfunction
 
 " Bind command and shortcut
-command! Header42 call s:stdheader ()
+command! Header42 call s:std42Header ()
 map <F1> :Header42<CR>
 autocmd BufWritePre * call s:update ()
 
