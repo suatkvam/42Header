@@ -149,8 +149,13 @@ function! s:std42Header()
     endif
 endfunction
 
+function! s:headerAll()
+    argdo execute "call s:std42Header()" | update
+endfunction
+
 " Bind command and shortcut
 command! Header42 call s:std42Header ()
+command! Headerall call s:headerAll ()
 map <F1> :Header42<CR>
 autocmd BufWritePre * call s:update ()
 
