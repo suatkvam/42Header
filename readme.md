@@ -12,7 +12,7 @@ It is designed for C/C++ files like `.c`, `.h`, `.cc`, and `.hpp`.
 * **Auto-Correction:** Automatically fixes incorrect filenames (`Filename: ...`) in files that were copied and pasted.
 * **Auto-Update:** Automatically updates the `Updated: ...` line every time you save (`:w`) or reopen the file.
 * **Batch Processing:** When opening multiple files (e.g., `vim *.c`), it processes, updates, and saves all files in one go.
-  - For manual batch processing, use: `:Headerall` or `:argdo execute "Header42" | update`
+  - For manual batch processing, use: `:Header42All` or `:argdo execute "Header42" | update`
 * **Manual Trigger:** You can manually insert/update the header at any time using the `:Header42` command or the `<F1>` key.
 
 ## Installation
