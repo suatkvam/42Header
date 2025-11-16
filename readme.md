@@ -27,7 +27,7 @@ git clone https://github.com/suatkvam/42Header.git 42header
 cd 42header
 
 # 3. Give execution permission to the script
-chmod +x setup.sh
+chmod +x create.sh
 
 # 4. Run the setup script
-./setup.sh
+./create.sh
