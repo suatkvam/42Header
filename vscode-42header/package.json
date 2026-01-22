@@ -1,0 +1,88 @@
+{
+  "name": "42header",
+  "displayName": "42 Header",
+  "description": "Automatically insert and update 42 school headers in your files",
+  "version": "1.0.0",
+  "publisher": "suatkvam",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Formatters",
+    "Other"
+  ],
+  "keywords": [
+    "42",
+    "header",
+    "42istanbul",
+    "ecole42",
+    "42school"
+  ],
+  "activationEvents": [
+    "onLanguage:c",
+    "onLanguage:cpp",
+    "onCommand:42header.insertHeader",
+    "onCommand:42header.updateAllHeaders"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "42header.insertHeader",
+        "title": "42: Insert/Update Header"
+      },
+      {
+        "command": "42header.updateAllHeaders",
+        "title": "42: Insert/Update All Headers in Workspace"
+      }
+    ],
+    "configuration": {
+      "title": "42 Header",
+      "properties": {
+        "42header.username": {
+          "type": "string",
+          "default": "",
+          "description": "Your 42 username (login)"
+        },
+        "42header.email": {
+          "type": "string",
+          "default": "",
+          "description": "Your 42 email (e.g., username@student.42istanbul.com.tr)"
+        },
+        "42header.autoUpdate": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically update header on file save"
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "42header.insertHeader",
+        "key": "ctrl+alt+h",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^20.x",
+    "@typescript-eslint/eslint-plugin": "^6.x",
+    "@typescript-eslint/parser": "^6.x",
+    "eslint": "^8.x",
+    "typescript": "^5.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/suatkvam/42Header.git"
+  },
+  "license": "MIT"
+}
