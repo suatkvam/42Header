@@ -124,17 +124,17 @@ export class Header42 {
                 return this.textLine(fileName, this.ASCII_ART[lineNum - 3], fileType);
 
             case 6:
-                // Author - compact format: By:username <email>
-                return this.textLine(`By:${username} <${email}>`, this.ASCII_ART[lineNum - 3], fileType, 1);
+                // Author - compact format: By: username <email>
+                return this.textLine(`By: ${username} <${email}>`, this.ASCII_ART[lineNum - 3], fileType, 3);
 
             case 8:
                 // Created - aligned with By line
                 const created = createdDate || currentDate;
-                return this.textLine(`Created: ${created} by ${username}`, this.ASCII_ART[lineNum - 3], fileType, 1);
+                return this.textLine(`Created: ${created} by ${username}`, this.ASCII_ART[lineNum - 3], fileType, 3);
 
             case 9:
                 // Updated - aligned with By line
-                return this.textLine(`Updated: ${currentDate} by ${username}`, this.ASCII_ART[lineNum - 3], fileType, 1);
+                return this.textLine(`Updated: ${currentDate} by ${username}`, this.ASCII_ART[lineNum - 3], fileType, 3);
 
             default:
                 return '';
@@ -216,10 +216,9 @@ export class Header42 {
         for (let i = 1; i <= 11; i++) {
             headerLines.push(this.generateLine(i, fileName, fileType));
         }
-        headerLines.push(''); // Empty line after header
 
         const edit = new vscode.WorkspaceEdit();
-        edit.insert(document.uri, new vscode.Position(0, 0), headerLines.join('\n') + '\n');
+        edit.insert(document.uri, new vscode.Position(0, 0), headerLines.join('\n') + '\n\n');
 
         await vscode.workspace.applyEdit(edit);
         vscode.window.showInformationMessage('Header inserted');
